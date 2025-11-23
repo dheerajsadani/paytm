@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Button from "@/app/Components/Button";
+import Button from "@/app/Components/Buttons/Button";
 
 import {Doto} from "next/font/google";
 
@@ -21,7 +21,7 @@ export default function Signup(){
     return(
         <div className="flex pt-[8%] items-center h-screen w-screen bg-[#F3F2EC] flex-col">
 
-            <div className="w-[32%] h-[66%] border rounded-lg flex flex-col bg-white pl-[4%] gap-8 relative shadow-2xl border-gray-300">
+            <div className="w-[32%] h-[75%] border rounded-lg flex flex-col bg-white pl-[4%] gap-8 relative shadow-2xl border-gray-300">
                 <div className={`pt-[10%] pl-[28%] text-xl ${DotoFont.className}`}>WASSUP :)</div>
 
                 <div className="gap-7 flex flex-col">
@@ -46,8 +46,13 @@ export default function Signup(){
                     </div>
                 </div>
 
+                <div className="mt-[8%] pl-[10%]">
+                    <span className="text-base font-semibold text-[#143f9c] ">Already have an account? </span>
+                    <Button onClick={()=> router.push("/auth/signin")} tailwindClasses="bg-[#313647] text-white border-1 rounded-xl px-4 py-0.5 mt-5 cursor-pointer text-base font-semibold min-w-8 max-w-fit hover:bg-black">Login</Button>
+                </div>
+
             
-                <div className="pl-[26%] absolute bottom-5">
+                <div className="pl-[26%] absolute bottom-20">
                     <Button onClick={async()=> {
                             if(fnRef.current && lnRef.current && emailRef.current && passRef.current){
                                 const res = await axios.post("/api/v1/signup",{
@@ -60,7 +65,10 @@ export default function Signup(){
 
                             if(data.message== "signup success"){
                                 router.push("/auth/signin")
-                            }else{
+                            }if(data.message= "user already exits with this email"){
+                                alert("account with email already exists")
+                            }
+                            else{
                                 alert("signup failed");
                             }
                         }

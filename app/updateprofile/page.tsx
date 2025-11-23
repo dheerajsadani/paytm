@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { getSession } from "next-auth/react";
 import { redirect } from "next/navigation";
@@ -10,6 +10,7 @@ export default function UpdateProfile(){
     const firstNameRef = useRef<HTMLInputElement>(null);
     const lastNameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
+    const [profileUpdated,setProfileUpdated] = useState(false)
 
     async function updateProfileData(){
         interface updatingDataType{
@@ -36,10 +37,10 @@ export default function UpdateProfile(){
 
             const res = await response.data;
             if(res.message = "updated"){
-
+                setProfileUpdated((v:Boolean)=> {return !v});
+                setTimeout(()=> {setProfileUpdated(false)},2000);
                 try{
                     await getProfileData();
-                    alert("Profile updated!");
 
                 }catch(e){
                     alert("Try Again :)");
@@ -70,15 +71,17 @@ export default function UpdateProfile(){
         getProfileData();
     },[])
     return(
-        <div className="h-screen w-screen bg-[#FFF2EF] pt-3 pr-3">
-            <div className="flex justify-end">
-                <button className="cursor-pointer border px-3 py-1 rounded-lg text-sm bg-[#AEDEFC]" onClick={()=> {redirect("/")}}>
-                    Home
-                </button>
-            </div>
-            <div className="flex pt-[13%] items-center flex-col">
+        
+        <div className="flex pt-[8%] items-center h-screen w-screen bg-[#F3F2EC] flex-col">
+        
+            <div className="w-[32%] h-[60%] border rounded-lg flex flex-col bg-white pl-[2%] mt-[3%] gap-8 relative">
+
+            {profileUpdated && <div className="absolute left-50 -top-8 ">
+                <img src="/tick.gif" width={70} height={70}></img>
+            </div>}
+            <div className="flex pt-[14%] items-center flex-col">
                     <div className="flex">
-                        <div className="gap-7 flex flex-col">
+                        <div className="gap-8 flex flex-col">
                             <div className="flex gap-3">
                                 <span className="text-lg font-semibold">FirstName</span>
                                 <input maxLength={15} className="border max-length rounded-md outline-none text-base text-center text-[#1A2A4F] font-bold" ref={firstNameRef}></input>
@@ -106,11 +109,19 @@ export default function UpdateProfile(){
                             </div>
                         </div>    
                     </div>               
-                    <div>
-                        <button onClick={updateProfileData} className="bg-green-300 border-2 rounded-md px-5 py-1 mt-8 cursor-pointer hover:bg-green-500 text-lg font-semibold">
+                    <div className="flex mt-8 gap-4">
+                        
+                        <button onClick={()=> {redirect("/")}} className={`bg-black text-white font-semibold text-lg px-5 py-1 rounded-2xl cursor-pointer hover:bg-[#5e55da] `}>Back</button>
+                        <button onClick={updateProfileData} className="bg-green-300 border-2 rounded-md px-3 py-1 cursor-pointer hover:bg-green-500 text-lg font-semibold">
                             Update
                         </button>
                     </div>
+                    
+            </div>
+
+
+
+
             </div>
         </div>
     )

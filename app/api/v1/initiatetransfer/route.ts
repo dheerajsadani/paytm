@@ -13,6 +13,8 @@ export async function PUT(req: NextRequest){
     }
     const body = await req.json();
     const {receiverId , amount} = body;
+    console.log(receiverId)
+    console.log(amount)
     if(!receiverId || !amount){
         return NextResponse.json({
             message: "transfer request with insufficient data"
@@ -32,9 +34,9 @@ export async function PUT(req: NextRequest){
 
     if(email){
         try{
-            const userAccountRes = await userAccount();
-            if(userAccountRes){
-                const  {accountId, balance} = await userAccountRes.json();
+            const userAccountInfo = await userAccount();
+            if(userAccountInfo){
+                const  {accountId, balance} = userAccountInfo;
                 if(accountId && balance){
 
                     if(balance < amount){

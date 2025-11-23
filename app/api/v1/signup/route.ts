@@ -8,7 +8,22 @@ export async function POST(req:NextRequest){
     const {firstName, lastName, email, password} = body;
 
     //user already exists or not
-
+    try{
+        const user = await prisma.user.findUnique({
+            where : {
+                email : email
+            }
+        })
+        if(user){
+            return NextResponse.json({
+                message : "user already exits with this email"
+            })
+        }
+    }catch(e){
+       return NextResponse.json({
+            message : "error in user signup"
+       }) 
+    }
     //if not create db entry
 
     //creating account first
@@ -25,8 +40,6 @@ export async function POST(req:NextRequest){
             message: "error in creating account"
         })
     }
-
-        //hashing password]
     let hashedPassword;
     try{
         hashedPassword = await bcrypt.hash(password,5);

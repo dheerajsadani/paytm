@@ -1,7 +1,7 @@
 "use client"
 
 import { redirect } from "next/navigation"
-import Button from "./Button"
+import Button from "./Buttons/Button"
 import { signOut } from "next-auth/react"
 
 export default function DashHeader(){

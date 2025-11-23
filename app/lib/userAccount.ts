@@ -1,11 +1,11 @@
 import { getServerSession } from "next-auth";
 import { prisma } from "@/app/lib/prisma";
-import { NextResponse } from "next/server";
+
 
 export default async function userAccount(){
     const session = await getServerSession();
     let email;
-    let userAccountId;
+
     if(session){
         email = session.user?.email
     }
@@ -22,47 +22,18 @@ export default async function userAccount(){
             })
 
             if(user){
-                return NextResponse.json({
-                            accountId : user.account.id,
-                            balance: user.account.balance
-                        })
+                return {
+                    accountId : user.account.id,
+                    balance: user.account.balance
+                }
             }else{
-                return NextResponse.json({message: "invalid account"})
+                return {
+                    accountId : null,
+                    balance: null
+                }
             }
-            // if(user){
-            //     userAccountId = user.accountId;
-            // }
-            // if(userAccountId){
-            //     try{
-            //         const userAccount = await prisma.account.findUnique({
-            //             where: {
-            //                 id: userAccountId
-            //             },
-            //             select: {
-            //                 balance: true
-            //             }
-            //         })
-
-            //         if(userAccount){
-            //             return NextResponse.json({
-            //                 balance: userAccount.balance
-            //             })
-            //         }else{
-            //             return NextResponse.json({
-            //                 message: "invalid account"
-            //             })
-            //         }
-                    
-            //     }catch(e){
-            //         return NextResponse.json({
-            //             message: "error in fetching user Balance"
-            //         })
-            //     }
-            // }
         }catch(e){
-            return NextResponse.json({
-                message: "error in fetching user"
-            })
+            console.log("error in getting balance")
         }
     }
 }

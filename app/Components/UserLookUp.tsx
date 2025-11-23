@@ -4,36 +4,37 @@ import axios from "axios";
 import { useContext, useRef, useState } from "react";
 import { useEffect } from "react";
 import UserMiniCard from "./UserMiniCard";
-import { ReceiverContext, SendMoneyContext } from "./ContextProvider";
+import { ReceiverContext, SendMoneyContext } from "./Context/ContextProvider";
 
-interface UserType{
-    firstName : string,
-    lastName : string,
-    accountId: number
-}
 
-interface randomUserType{
-    randomUsers: UserType[]
-}
-
-export default function UserLookUp({randomUsers}:randomUserType){
-
-    const SendMoneyContexts = useContext(SendMoneyContext);
-    const setSendMoney = SendMoneyContexts.value[1];
-
-    const ReceiverContexts = useContext(ReceiverContext);
-    const setReceiver = ReceiverContexts.value[1];
+export default function UserLookUp(){
+    const { setSendMoney} = useContext(SendMoneyContext);
+    const {receiver , setReceiver} = useContext(ReceiverContext);
 
     const userInputRef = useRef<HTMLInputElement>(null);
 
-
     const [searchField , setSearchField] = useState("");
     const [users , setUsers] = useState([]);
+    const [randomUsers, setRandomUsers] = useState([]);
+
+    interface UserType{
+        firstName : string,
+        lastName : string,
+        accountId: number
+    }
+
     function inputHandler(e: any){
         setSearchField(e.target.value);
     }
 
-
+    async function randomUsersFetch(){
+        const result = await axios("/api/v1/randomuserdata");
+        let data = await result.data;
+        data = data.result
+        if(data){
+            setRandomUsers(data);
+        }
+    }
     useEffect(() => {
 
         if(!searchField){
@@ -64,11 +65,10 @@ export default function UserLookUp({randomUsers}:randomUserType){
         usersFetch();
     },[searchField])
 
-    // useEffect(()=>{
-    //     console.log(users)
-    // },[users])
 
     useEffect(()=> { 
+        randomUsersFetch();
+        
         function backspaceKeyHandler(e:any){
             if(e.key == "Backspace"){
                 setUsers([]);
@@ -90,7 +90,7 @@ export default function UserLookUp({randomUsers}:randomUserType){
                 {users.map((x:any,id)=> 
                     <div key={id} className="pl-2 pr-4 pt-1 hover:bg-gray-300 w-fit rounded-lg flex items-center cursor-pointer relative mb-1.5">
                         <button className="cursor-pointer" onClick={()=> {
-                            setSendMoney(true);
+                            setSendMoney({value: true});
                             setReceiver((v:any)=> {
                                 return {
                                     firstName: `${x.firstName}`,
@@ -98,14 +98,15 @@ export default function UserLookUp({randomUsers}:randomUserType){
                                     accountId: x.accountId
                                 }
                             })
+                            console.log(receiver);
                         }}>{x.firstName} {x.lastName}</button>
                         <div className="border-[#fdfdfd] border-[0.1px] -bottom-px  absolute w-[90%] pr-4 mt-0.5"></div>
                     </div>
                 )}
             </div>
-            :
-            <div>
-                {randomUsers!=null ? 
+            : 
+            <>
+                {randomUsers.length>0 ?
                 <div className="pl-9 flex flex-col gap-4 pt-7">
                     {randomUsers.map((x:UserType,id:number)=> 
                         <div key={id}>
@@ -113,9 +114,12 @@ export default function UserLookUp({randomUsers}:randomUserType){
                         </div>)
                     }
                 </div>
-                : <></>
+                 : 
+                 <></>
                 }
-            </div>
+                
+            </>
+                
             }
         </div>
     )

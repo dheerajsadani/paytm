@@ -1,10 +1,8 @@
 "use client"
 import {TASA_Orbiter} from "next/font/google";
-import SendMoneyButton from "./SendMoneyButton";
+import SendMoneyButton from "./Buttons/SendMoneyButton";
 import { useContext } from "react";
-import { ReceiverContext, SendMoneyContext } from "./ContextProvider";
-
-// import { useRouter } from "next/navigation";
+import { ReceiverContext, SendMoneyContext } from "./Context/ContextProvider";
 
 interface UsersDataType{
     firstName: string,
@@ -21,15 +19,9 @@ const TASAOrbiter = TASA_Orbiter({
 });
 
 export default function UserMiniCard({randomUser}: UserMiniCardType){
-    // const router = useRouter();
 
-    const SendMoneyContexts = useContext(SendMoneyContext);
-    const sendMoney = SendMoneyContexts.value[0];
-    const setSendMoney = SendMoneyContexts.value[1];
-
-    const ReceiverContexts = useContext(ReceiverContext);
-    const receiver = ReceiverContexts.value[0];
-    const setReceiver = ReceiverContexts.value[1];
+     const {sendMoney , setSendMoney} = useContext(SendMoneyContext);
+    const {receiver , setReceiver} = useContext(ReceiverContext);
     return(
         <div>
             <div className="flex">
@@ -39,7 +31,7 @@ export default function UserMiniCard({randomUser}: UserMiniCardType){
                 </div>
                 <SendMoneyButton tailwindClasses="absolute left-100" 
                     onClick={()=> {
-                        setSendMoney(true);
+                        setSendMoney({value : true});
                         setReceiver((v:any)=> {
                             return {
                             firstName: `${randomUser.firstName}`,

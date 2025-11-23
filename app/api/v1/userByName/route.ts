@@ -1,6 +1,7 @@
 import { prisma } from "@/app/lib/prisma";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
+import { emit } from "process";
 
 export async function POST(req: NextRequest){
 
@@ -16,13 +17,13 @@ export async function POST(req: NextRequest){
 
     const users = await prisma.user.findMany({
         where: {
-            firstName : nameKeyword
+            firstName : nameKeyword,
         },
         select: {
             firstName: true,
             lastName: true,
             accountId: true
-        }
+        },
     })
     if(users.length>0){
         return NextResponse.json({

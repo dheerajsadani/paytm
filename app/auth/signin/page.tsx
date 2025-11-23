@@ -1,10 +1,11 @@
 "use client"
 
-import Button from "@/app/Components/Button";
+import Button from "@/app/Components/Buttons/Button";
 import { signIn } from "next-auth/react";
 import { useRef, useState } from "react"
 import {Doto} from "next/font/google";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const DotoFont= Doto({
     weight:"600"
@@ -21,11 +22,13 @@ export default function LogIn(){
     const [changePassSuccess,setChangePassSuccess]= useState(false);
     const userEmailRef = useRef<HTMLInputElement>(null);
 
+    const router = useRouter();
+
     if(!forgetPass)
     return(
         <div className="flex pt-[8%] items-center h-screen w-screen bg-[#F3F2EC] flex-col">
 
-            <div className="w-[32%] h-[66%] border rounded-lg flex flex-col bg-white pl-[4%] gap-8 relative">
+            <div className="w-[32%] h-[70%] border rounded-lg flex flex-col bg-white pl-[4%] gap-8 relative">
 
                 <div className={`pt-[10%] pl-[20%] text-xl ${DotoFont.className}`}>Welcome Back :)</div>
 
@@ -55,6 +58,11 @@ export default function LogIn(){
                         })
                     }
                     }}>Login</Button>
+                </div>
+
+                <div className="-mt-[7%] pl-[18%]">
+                    <span className="text-base text-[#143f9c] font-semibold"> New User? </span>
+                    <Button onClick={()=> router.push("/auth/signup")} tailwindClasses="bg-[#313647] text-white border-1 rounded-xl px-4 py-0.5 mt-5 cursor-pointer text-base font-semibold min-w-8 max-w-fit hover:bg-black">SIGNUP</Button>
                 </div>
             </div>
         </div>

@@ -1,48 +1,32 @@
 "use client"
-
+import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react"
-import { ReceiverContext, SendMoneyContext} from "./ContextProvider"
-import axios from "axios"
-import { server } from "typescript";
 
-export default function PaytmHero({children,balance}:{children: React.ReactNode , balance:number}){
-    // const UserBalanceContexts = useContext(UserBalanceContext);
-    // const balance = UserBalanceContexts.value[0];
-    // const setBalance = UserBalanceContexts.value[1];
+import { ReceiverContext, SendMoneyContext } from "./Context/ContextProvider";
+import UserLookUp from "./UserLookUp";
 
-    // const []
-
-    const SendMoneyContexts = useContext(SendMoneyContext);
-    const sendMoney = SendMoneyContexts.value[0];
-    const setSendMoney = SendMoneyContexts.value[1];
-
-    const ReceiverContexts = useContext(ReceiverContext);
-    const receiver = ReceiverContexts.value[0];
-    const setReceiver = ReceiverContexts.value[1];
+export default function PaytmHero({balance}: {balance: number}){
 
     const[showSucessModal,setShowSuccessModal] = useState(false);
+    const {sendMoney , setSendMoney} = useContext(SendMoneyContext);
+    const {receiver , setReceiver} = useContext(ReceiverContext);
+
     const amountRef = useRef<HTMLInputElement>(null);
 
     
-    if(!sendMoney)
+    if(!sendMoney.value)
     return (
         <div>
-            {children}
+            <UserLookUp />
         </div>
     )
 
-    // useEffect(()=> {
-    //     setBalance(userBalance);
-    // },[])
-    // useEffect(()=> {
-    //     console.log(receiver)
-    // },[receiver])
-
     return(
+
         <div className="flex w-screen h-screen justify-center pt-[4%] bg-[#F3F2EC] ">
             <div className="w-[32%] h-[60%] border rounded-lg flex flex-col bg-white gap-8 relative border-gray-300 shadow-lg">
 
-            {!showSucessModal && <button onClick={()=> {setSendMoney(false)}} 
+            {!showSucessModal && <button onClick={()=> {setSendMoney({value : false})}} 
                     className={`bg-[#6988e6] text-white font-semibold text-sm px-3 py-1.5 rounded-xl cursor-pointer ml-[3%] mt-[4%] absolute`}>Back</button>
             }
                     
@@ -111,7 +95,7 @@ export default function PaytmHero({children,balance}:{children: React.ReactNode 
                             <button onClick={()=> 
                                 {
                                     setShowSuccessModal(false);
-                                    setSendMoney(false);
+                                    setSendMoney({value: false});
                                 }
                             } className={`bg-black text-white font-semibold text-xl px-5 py-1 rounded-2xl cursor-pointer `}>Back</button>
                         </div>
