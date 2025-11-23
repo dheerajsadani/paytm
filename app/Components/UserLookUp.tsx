@@ -46,9 +46,6 @@ export default function UserLookUp(){
                 nameKeyword: searchField
             })
 
-            // console.log("response")
-            // console.log(response)
-
             if(response){
                 data = await response.data;
 
@@ -98,7 +95,6 @@ export default function UserLookUp(){
                                     accountId: x.accountId
                                 }
                             })
-                            console.log(receiver);
                         }}>{x.firstName} {x.lastName}</button>
                         <div className="border-[#fdfdfd] border-[0.1px] -bottom-px  absolute w-[90%] pr-4 mt-0.5"></div>
                     </div>

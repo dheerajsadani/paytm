@@ -13,8 +13,6 @@ export async function PUT(req: NextRequest){
     }
     const body = await req.json();
     const {receiverId , amount} = body;
-    console.log(receiverId)
-    console.log(amount)
     if(!receiverId || !amount){
         return NextResponse.json({
             message: "transfer request with insufficient data"

@@ -67,10 +67,8 @@ export default function PaytmHero({balance}: {balance: number}){
                                             amount : receiver.amount
                                         });
                                         const data = await result.data;
-                                        console.log(data.message)
                                         if(data.message == "transfer success"){
                                             setShowSuccessModal(true);
-                                            console.log(receiver);
                                         }
                                     }  
                                 }
