@@ -6,8 +6,7 @@
 
 ## 🚀 Live Demo
 
-- **Live App:** <a href="paytm-v697.vercel.app">Click to view Paytm Clone</a>
-- 
+- **Live App:** <a href="paytm-v697.vercel.app">paytm-v697.vercel.app</a>
 
 ## 🧩 Tech Stack
 
@@ -83,7 +82,7 @@ NEXTAUTH_URL=http://localhost:3000
 
 Full-stack Paytm clone built with Next.js, featuring wallet management and P2P transfers
 
-**Live:** paytm-v697.vercel.app
+**Live:** <a href="paytm-v697.vercel.app">paytm-v697.vercel.app</a>
 
 ### Languages
 
