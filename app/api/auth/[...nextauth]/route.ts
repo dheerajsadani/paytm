@@ -14,7 +14,7 @@ const handler = NextAuth({
         password: {label: "Password", type: "password"}
       },
 
-      async authorize(credentials){
+      async authorize(credentials):Promise<any>{
         
         if(credentials){
           const user = await prisma.user.findFirst({
