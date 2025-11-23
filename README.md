@@ -6,7 +6,7 @@
 
 ## 🚀 Live Demo
 
-- **Live App:** <a href="paytm-v697.vercel.app">paytm-v697.vercel.app</a>
+- **Live App:** <a href="paytm-v697.vercel.app" target="_blank">paytm-v697.vercel.app</a>
 
 ## 🧩 Tech Stack
 
