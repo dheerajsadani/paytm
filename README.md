@@ -6,7 +6,8 @@
 
 ## 🚀 Live Demo
 
-- **Live App:** paytm-v697.vercel.app
+- **Live App:** <a href="paytm-v697.vercel.app">Click to view Paytm Clone</a>
+- 
 
 ## 🧩 Tech Stack
 
