@@ -72,7 +72,7 @@ export default function Signup(){
                             }
                             
                             else{
-                                alert("signup failed");
+                                alert("signup failed!");
                             }
                         }
                     }}>Signup</Button>
