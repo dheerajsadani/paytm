@@ -7,7 +7,7 @@ export async function GET(){
         let randomId;
         randomId = Math.floor((Math.random() * (userCount+9 - 15) + (15)));
         const result =  await prisma.user.findMany({
-            take: 5,
+            take: 7,
             cursor: {
                 id: randomId
             },

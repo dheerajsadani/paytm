@@ -24,7 +24,7 @@ export default function PaytmHero({balance}: {balance: number}){
     return(
 
         <div className="flex w-screen h-screen justify-center pt-[4%] bg-[#F3F2EC] ">
-            <div className="md:w-[32%] w-[80%] md:h-[60%] h-[39%] border rounded-lg flex flex-col bg-white gap-8 relative border-gray-300 shadow-lg">
+            <div className="md:w-[32%] w-[80%] md:h-[60%] h-[42%] border rounded-lg flex flex-col bg-white gap-8 relative border-gray-300 shadow-lg">
 
             {!showSucessModal && <button onClick={()=> {setSendMoney({value : false})}} 
                     className={`bg-[#6988e6] text-white font-semibold text-sm px-3 py-1.5 rounded-xl cursor-pointer ml-[3%] mt-[4%] absolute`}>Back</button>
@@ -41,7 +41,7 @@ export default function PaytmHero({balance}: {balance: number}){
             } */}
 
             {receiver && 
-                <div className="flex flex-col pl-[10%] pt-5">
+                <div className="flex flex-col pl-[10%] md:pt-5 ">
                     <div className="w-[75%]">
                         <div className="flex gap-3 items-center">
                             <span className="bg-green-500 rounded-full border px-2 py-1 md:text-3xl text-xl text-white font-medium uppercase md:w-11 md:h-11 w-8 h-8 flex items-center justify-center">{receiver.firstName.charAt(0).toUpperCase()}</span>
