@@ -24,7 +24,7 @@ export default function PaytmHero({balance}: {balance: number}){
     return(
 
         <div className="flex w-screen h-screen justify-center pt-[4%] bg-[#F3F2EC] ">
-            <div className="md:w-[32%] w-[80%] md:h-[60%] h-[37%] border rounded-lg flex flex-col bg-white gap-8 relative border-gray-300 shadow-lg">
+            <div className="md:w-[32%] w-[80%] md:h-[60%] h-[39%] border rounded-lg flex flex-col bg-white gap-8 relative border-gray-300 shadow-lg">
 
             {!showSucessModal && <button onClick={()=> {setSendMoney({value : false})}} 
                     className={`bg-[#6988e6] text-white font-semibold text-sm px-3 py-1.5 rounded-xl cursor-pointer ml-[3%] mt-[4%] absolute`}>Back</button>
@@ -80,7 +80,7 @@ export default function PaytmHero({balance}: {balance: number}){
             }
 
             {showSucessModal &&   
-                    <div className="glass ml-[2.5%] md:w-[82%] md:h-[81%] h-[92%] w-[90%] top-[5%] md:left-[7.5%] left-3 border rounded-lg absolute flex items-center flex-col gap-3">
+                    <div className="glass ml-[2.5%] md:w-[82%] md:h-[81%] h-[92%] w-[90%] top-[5%] md:left-[7.5%] left-2 border rounded-lg absolute flex items-center flex-col gap-3">
                         <div className="pt-[20%]">
                             <img src="/tick.gif" width={70} height={70}></img>
                         </div>
