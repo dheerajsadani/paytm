@@ -29,7 +29,7 @@ export default function UserMiniCard({randomUser}: UserMiniCardType){
                     <div className={`text-lg flex items-center justify-center font-medium ${TASAOrbiter.className} bg-gray-300 rounded-full h-9 w-9`}>{randomUser.firstName.charAt(0).toUpperCase()}</div>
                     <span className="font-semibold text-xl leading-none">{randomUser.firstName.charAt(0).toUpperCase() + randomUser.firstName.slice(1)} {randomUser.lastName.charAt(0).toUpperCase() + randomUser.lastName.slice(1)}</span>
                 </div>
-                <SendMoneyButton tailwindClasses="absolute left-100" 
+                <SendMoneyButton tailwindClasses="absolute md:left-100 left-70" 
                     onClick={()=> {
                         setSendMoney({value : true});
                         setReceiver((v:any)=> {

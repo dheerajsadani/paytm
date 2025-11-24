@@ -19,10 +19,10 @@ export default function Signup(){
 
     const router = useRouter();
     return(
-        <div className="flex pt-[8%] items-center h-screen w-screen bg-[#F3F2EC] flex-col">
+        <div className="flex md:pt-[8%] pt-[14%] items-center h-screen w-screen bg-[#F3F2EC] flex-col">
 
-            <div className="w-[32%] h-[75%] border rounded-lg flex flex-col bg-white pl-[4%] gap-8 relative shadow-2xl border-gray-300">
-                <div className={`pt-[10%] pl-[28%] text-xl ${DotoFont.className}`}>WASSUP :)</div>
+            <div className="md:w-[32%] md:h-[75%] w-[85%] h-[52%] border rounded-lg flex flex-col bg-white pl-[4%] gap-8 relative shadow-2xl border-gray-300">
+                <div className={`pt-[10%] md:pl-[28%] pl-[33%] text-xl ${DotoFont.className}`}>WASSUP :)</div>
 
                 <div className="gap-7 flex flex-col">
                     <div className="flex gap-3">
@@ -52,7 +52,7 @@ export default function Signup(){
                 </div>
 
             
-                <div className="pl-[26%] absolute bottom-20">
+                <div className="md:pl-[28%] absolute md:bottom-20 pl-[35%] bottom-24">
                     <Button onClick={async()=> {
                             if(fnRef.current && lnRef.current && emailRef.current && passRef.current){
                                 const res = await axios.post("/api/v1/signup",{

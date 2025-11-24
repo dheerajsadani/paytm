@@ -103,7 +103,7 @@ export default function UserLookUp(){
             : 
             <>
                 {randomUsers.length>0 ?
-                <div className="pl-9 flex flex-col gap-4 pt-7">
+                <div className="md:pl-9 pl-4 flex flex-col gap-4 pt-7">
                     {randomUsers.map((x:UserType,id:number)=> 
                         <div key={id}>
                             <UserMiniCard randomUser={x}/>

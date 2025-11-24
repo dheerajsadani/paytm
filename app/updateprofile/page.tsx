@@ -74,7 +74,7 @@ export default function UpdateProfile(){
         
         <div className="flex pt-[8%] items-center h-screen w-screen bg-[#F3F2EC] flex-col">
         
-            <div className="w-[32%] h-[60%] border rounded-lg flex flex-col bg-white pl-[2%] mt-[3%] gap-8 relative">
+            <div className="md:w-[32%] md:h-[60%] w-[80%] h-[35%] border rounded-lg flex flex-col bg-white pl-[2%] md:mt-[3%] mt-[15%] gap-8 relative">
 
             {profileUpdated && <div className="absolute left-50 -top-8 ">
                 <img src="/tick.gif" width={70} height={70}></img>

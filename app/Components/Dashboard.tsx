@@ -13,7 +13,7 @@ export default async function Dashboard(){
 
   if(balance!=null || balance!=undefined)
     return(
-    <div className="pt-3">
+    <div className="md:pt-3 pt-5">
         <DashHeader />
         {balance>=0 && 
         <Paytm balance={balance}></Paytm>}

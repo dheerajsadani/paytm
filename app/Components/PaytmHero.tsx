@@ -24,14 +24,14 @@ export default function PaytmHero({balance}: {balance: number}){
     return(
 
         <div className="flex w-screen h-screen justify-center pt-[4%] bg-[#F3F2EC] ">
-            <div className="w-[32%] h-[60%] border rounded-lg flex flex-col bg-white gap-8 relative border-gray-300 shadow-lg">
+            <div className="md:w-[32%] w-[80%] md:h-[60%] h-[37%] border rounded-lg flex flex-col bg-white gap-8 relative border-gray-300 shadow-lg">
 
             {!showSucessModal && <button onClick={()=> {setSendMoney({value : false})}} 
                     className={`bg-[#6988e6] text-white font-semibold text-sm px-3 py-1.5 rounded-xl cursor-pointer ml-[3%] mt-[4%] absolute`}>Back</button>
             }
                     
 
-            <div className="text-3xl font-extrabold ml-[32%] mt-[4%]">Send Money</div>
+            <div className="md:text-3xl text-2xl font-extrabold ml-[32%] mt-[4%]">Send Money</div>
 
             {/* {balance &&
                 <div className="bg-[#F3F3E0] w-[45%] flex justify-center items-center rounded-lg py-1 ml-[25%] gap-2">
@@ -41,10 +41,10 @@ export default function PaytmHero({balance}: {balance: number}){
             } */}
 
             {receiver && 
-                <div className="flex flex-col  pl-[10%] pt-5">
+                <div className="flex flex-col pl-[10%] pt-5">
                     <div className="w-[75%]">
                         <div className="flex gap-3 items-center">
-                            <span className="bg-green-500 rounded-full border px-2 py-1 text-3xl text-white font-medium uppercase w-11 h-11 text-center">{receiver.firstName.charAt(0).toUpperCase()}</span>
+                            <span className="bg-green-500 rounded-full border px-2 py-1 md:text-3xl text-xl text-white font-medium uppercase md:w-11 md:h-11 w-8 h-8 flex items-center justify-center">{receiver.firstName.charAt(0).toUpperCase()}</span>
                             <div className="text-2xl font-bold">{receiver.firstName.charAt(0).toUpperCase()}{receiver.firstName.slice(1)} {receiver.lastName.charAt(0).toUpperCase()}{receiver.lastName.slice(1)}</div>
                         </div>
                         <div className="text-sm font-semibold mt-5">Amount (in Rs)</div>
@@ -80,7 +80,7 @@ export default function PaytmHero({balance}: {balance: number}){
             }
 
             {showSucessModal &&   
-                    <div className="glass ml-[2.5%] w-[82%] h-[81%] top-[5%] left-[7.5%] border rounded-lg absolute flex items-center flex-col gap-3">
+                    <div className="glass ml-[2.5%] md:w-[82%] md:h-[81%] h-[92%] w-[90%] top-[5%] md:left-[7.5%] left-3 border rounded-lg absolute flex items-center flex-col gap-3">
                         <div className="pt-[20%]">
                             <img src="/tick.gif" width={70} height={70}></img>
                         </div>
