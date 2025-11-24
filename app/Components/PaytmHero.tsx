@@ -31,7 +31,7 @@ export default function PaytmHero({balance}: {balance: number}){
             }
                     
 
-            <div className="md:text-3xl text-2xl font-extrabold ml-[32%] mt-[4%]">Send Money</div>
+            <div className="md:text-3xl text-2xl font-extrabold ml-[32%] md:mt-[4%] mt-[13%]">Send Money</div>
 
             {/* {balance &&
                 <div className="bg-[#F3F3E0] w-[45%] flex justify-center items-center rounded-lg py-1 ml-[25%] gap-2">
