@@ -10,11 +10,24 @@ export default async function Dashboard(){
   if(userAccountInfo){
     balance = userAccountInfo.balance;
   }
+
+  if(balance!=null || balance!=undefined)
+    return(
+    <div className="pt-3">
+        <DashHeader />
+        {balance>=0 && 
+        <Paytm balance={balance}></Paytm>}
+    </div>
+    );
+
     return(
       <div className="pt-3">
           <DashHeader />
-          {balance && 
-          <Paytm balance={balance}></Paytm>}
+          <div className="flex justify-center items-center mt-[10%]">
+            <span className="text-2xl font-bold">
+              Loading.....
+            </span>
+          </div>
       </div>
-    );
-  }
+    )
+}

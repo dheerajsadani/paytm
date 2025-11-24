@@ -63,11 +63,14 @@ export default function Signup(){
                                 });
                             const data = await res.data;
 
-                            if(data.message== "signup success"){
-                                router.push("/auth/signin")
-                            }if(data.message= "user already exits with this email"){
+                            if(data.message== "user already exits with this email"){
                                 alert("account with email already exists")
                             }
+
+                            if(data.message== "signup success"){
+                                router.push("/auth/signin")
+                            }
+                            
                             else{
                                 alert("signup failed");
                             }
